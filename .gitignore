@@ -1,6 +1,6 @@
 db.sqlite3
 geckodriver.log
 .DS_Store
-__pycache__
+*__pycache__
 *.pyc
 *.idea
