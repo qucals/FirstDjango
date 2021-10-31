@@ -1,12 +1,13 @@
 import time
-import unittest
 
 from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
+from django.test import LiveServerTestCase
 
-class NewVisitorTest(unittest.TestCase):
+
+class NewVisitorTest(LiveServerTestCase):
     """
     Тест нового посетителя
     """
@@ -34,7 +35,7 @@ class NewVisitorTest(unittest.TestCase):
         # Эдит слышала про крутое новое онлайн-приложение со
         # списком неотложенных дел. Она решает оценить его
         # домашнюю страницу
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # Она видит, что загловок и шапка страницы говорят о списках
         # неотложенных дел
@@ -56,9 +57,6 @@ class NewVisitorTest(unittest.TestCase):
         # Когда она нажимает enter, страница обновляется, и теперь страница
         # содержит "1: Куаить павлиньи перья" в качестве элемента списка
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
-
-        self.check_for_row_in_list_table('1: Купить павлиньи перья')
 
         # Текстовое поле по-прежнему приглашает ее добавить еще один элемент.
         # Она вводит "Сделать мушку из павлиньих перьев"
@@ -67,6 +65,7 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
+        self.check_for_row_in_list_table('1: Купить павлиньи перья')
         self.check_for_row_in_list_table('2: Сделать мушку из павлиньих перьев')
 
         # Эдит интересно, запомнит ли сайт ее список. Далее она видит, что
@@ -77,7 +76,3 @@ class NewVisitorTest(unittest.TestCase):
         # Она посещяет этот URL-адрес - ее список по-прежнему там.
 
         # Удовлетворенная, она снова ложится спать
-
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
