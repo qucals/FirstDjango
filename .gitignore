@@ -1,4 +1,4 @@
-db.sqlite3
+lists/db.sqlite3
 geckodriver.log
 .DS_Store
 *__pycache__
