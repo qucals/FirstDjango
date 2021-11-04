@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 
 from django.test import LiveServerTestCase
 
-MAX_WAIT = 10
+MAX_WAIT = 3
 
 
 class NewVisitorTest(LiveServerTestCase):
