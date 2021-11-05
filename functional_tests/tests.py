@@ -1,16 +1,16 @@
 import time
 
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException, StaleElementReferenceException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
-from django.test import LiveServerTestCase
 
 MAX_WAIT = 3
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     """
     Тест нового посетителя
     """
